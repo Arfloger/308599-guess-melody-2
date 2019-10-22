@@ -7,16 +7,15 @@ import {WelcomeScreen} from "./welcome-screen.jsx";
 Enzyme.configure({adapter: new Adapter()});
 
 it(`WelcomeScreen is correctly`, () => {
-  const preventDefault = jest.fn();
   const clickHandler = jest.fn();
   const welcomeScreen = shallow(<WelcomeScreen
     time = {0}
     errorCount = {0}
-    onClick = {clickHandler}
+    onStartButtonClick = {clickHandler}
   />);
 
   const startButton = welcomeScreen.find(`button`);
-  startButton.simulate(`click`, {preventDefault});
+  startButton.simulate(`click`);
 
-  expect(preventDefault).toHaveBeenCalledTimes(1);
+  expect(clickHandler).toHaveBeenCalledTimes(1);
 });

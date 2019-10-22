@@ -1,14 +1,14 @@
 import React from "react";
 import renderer from "react-test-renderer";
 
-import {App} from "./app.jsx";
-import {settings} from '../../const';
+import App from "./app.jsx";
 
 it(`App correctly renders after relaunch`, () => {
   const tree = renderer
     .create(<App
-      gameTime = {settings.gameTime}
-      errorCount = {settings.errorCount}
+      gameTime = {0}
+      errorCount = {0}
+      questions = {[]}
     />).toJSON();
 
   expect(tree).toMatchSnapshot();

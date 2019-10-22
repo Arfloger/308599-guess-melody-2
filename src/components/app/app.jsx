@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 
 import {WelcomeScreen} from '../welcome-screen/welcome-screen.jsx';
 import {GenreQuestionScreen} from '../genre-question-screen/genre-question-screen.jsx';
+import {ArtistQuestionScreen} from '../artist-question-screen/artist-question-screen.jsx';
 
 export default class App extends PureComponent {
 
   static getScreen(question, props, onUserAnswer) {
+
     if (question === -1) {
       const {gameTime, errorCount} = props;
 
@@ -19,11 +21,26 @@ export default class App extends PureComponent {
     }
 
     const {questions} = props;
-    return <GenreQuestionScreen
-      question={questions[question]}
-      onAnswer={onUserAnswer}
-    />;
+    const currentQuestion = questions[question];
 
+    switch (currentQuestion.type) {
+      case `genre`: {
+        return <GenreQuestionScreen
+          question={currentQuestion}
+          onAnswer={onUserAnswer}
+          screenIndex={question}
+        />;
+      }
+      case `artist`: {
+        return <ArtistQuestionScreen
+          question={currentQuestion}
+          onAnswer={onUserAnswer}
+          screenIndex={question}
+        />;
+      }
+    }
+
+    return null;
   }
 
   constructor(props) {
@@ -35,17 +52,20 @@ export default class App extends PureComponent {
 
   render() {
     const {
-      gameTime, 
-      errorCount,
       questions,
     } = this.props;
+
     const {question} = this.state;
 
     return App.getScreen(question, this.props, () => {
-      this.setState((prevState) => ({
-        ...prevState,
-        question: prevState.question + 1,
-      }));
+      this.setState((prevState) => {
+        const nextIndex = prevState.question + 1;
+        const isEnd = nextIndex >= questions.length;
+
+        return {
+          question: !isEnd ? nextIndex : -1,
+        };
+      });
     });
   }
 }
@@ -53,4 +73,5 @@ export default class App extends PureComponent {
 App.propTypes = {
   gameTime: PropTypes.number.isRequired,
   errorCount: PropTypes.number.isRequired,
+  questions: PropTypes.array.isRequired,
 };

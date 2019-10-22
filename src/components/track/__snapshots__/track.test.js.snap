@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Track correctly renders after relaunch 1`] = `
+<div
+  className="track"
+>
+  <button
+    className="track__button track__button--play"
+    type="button"
+  />
+  <div
+    className="track__status"
+  >
+    <audio />
+  </div>
+  <div
+    className="game__answer"
+  >
+    <input
+      className="game__input visually-hidden"
+      id=""
+      name="answer"
+      type="checkbox"
+      value=""
+    />
+    <label
+      className="game__check"
+      htmlFor=""
+    >
+      Отметить
+    </label>
+  </div>
+</div>
+`;
