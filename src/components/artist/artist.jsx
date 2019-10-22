@@ -24,7 +24,7 @@ export const Artist = (props) => {
 };
 
 Artist.propTypes = {
-  value: PropTypes.string.isRequired,
-  srcPath: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
+  value: PropTypes.string,
+  srcPath: PropTypes.string,
+  title: PropTypes.string,
 };

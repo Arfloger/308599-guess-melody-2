@@ -1,11 +1,11 @@
 import React from "react";
 import renderer from "react-test-renderer";
 
-import {GenreQuestionScreen} from "./genre-question-screen.jsx";
+import {ArtistQuestionScreen} from "./artist-question-screen.jsx";
 
-it(`GenreQuestionScreen correctly renders after relaunch`, () => {
+it(`ArtistQuestionScreen correctly renders after relaunch`, () => {
   const tree = renderer
-    .create(<GenreQuestionScreen
+    .create(<ArtistQuestionScreen
       question={{answers: [1, 2, 3]}}
       onAnswer={() => {}}
       screenIndex={0}
